@@ -1,29 +1,36 @@
 """
-package-name is utility to create sub process.
+k3thread is utility to create and operate thread.
 
-Execute a shell script::
+Start a daemon thread after 0.2 seconds::
 
-    import pk3proc
+    >>> th = daemon(lambda :1, after=0.2)
 
-    # execute a shell script
+Stop a thread by sending a exception::
 
-    returncode, out, err = pk3proc.shell_script('ls / | grep bin')
-    print returncode
-    print out
-    # output:
-    # > 0
-    # > bin
-    # > sbin
+    import time
 
-Run a command::
+    def busy():
+        while True:
+            time.sleep(0.1)
 
-    # Unlike the above snippet, following statement does not start an sh process.
-    returncode, out, err = pk3proc.command('ls', 'a*', cwd='/usr/local')
+    t = daemon(busy)
+    send_exception(t, SystemExit)
 
 """
 
-# from .proc import CalledProcessError
-# from .proc import ProcError
+__version__ = "0.1.0"
+__name__ = "k3thread"
 
-__version__ = "0.2.2"
-__name__ = "k3proc"
+from .thd import InvalidThreadIdError
+from .thd import SendRaiseError
+from .thd import daemon
+from .thd import send_exception
+from .thd import start
+
+__all__ = [
+    "InvalidThreadIdError",
+    "SendRaiseError",
+    "daemon",
+    "send_exception",
+    "start",
+]

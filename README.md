@@ -1,29 +1,25 @@
-# pk3proc
+# k3thread
 
-[![Build Status](https://travis-ci.com/pykit3/pk3proc.svg?branch=master)](https://travis-ci.com/pykit3/pk3proc)
-[![Documentation Status](https://readthedocs.org/projects/pk3proc/badge/?version=stable)](https://pk3proc.readthedocs.io/en/stable/?badge=stable)
+[![Build Status](https://travis-ci.com/pykit3/k3thread.svg?branch=master)](https://travis-ci.com/pykit3/k3thread)
+[![Documentation Status](https://readthedocs.org/projects/k3thread/badge/?version=stable)](https://k3thread.readthedocs.io/en/stable/?badge=stable)
+[![Package](https://img.shields.io/pypi/pyversions/k3thread)](https://pypi.org/project/k3thread)
 
-no desc
+utility to create thread.
+
+k3thread is a component of [pykit3] project: a python3 toolkit set.
+
 
 # Install
 
 ```
-pip install pk3proc
+pip install k3thread
 ```
 
 # Synopsis
 
 ```python
-import pk3proc
+>>> th = daemon(lambda :1, after=0.2)
 
-# execute a shell script
-returncode, out, err = pk3proc.shell_script('ls / | grep bin')
-print returncode
-print out
-# output:
-# > 0
-# > bin
-# > sbin
 ```
 
 #   Author
@@ -35,3 +31,6 @@ Zhang Yanpo (张炎泼) <drdr.xp@gmail.com>
 The MIT License (MIT)
 
 Copyright (c) 2015 Zhang Yanpo (张炎泼) <drdr.xp@gmail.com>
+
+
+[pykit3]: https://github.com/pykit3
