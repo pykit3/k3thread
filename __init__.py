@@ -18,7 +18,7 @@ Stop a thread by sending a exception::
 
 """
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 __name__ = "k3thread"
 
 from .thd import InvalidThreadIdError
