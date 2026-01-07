@@ -59,6 +59,7 @@ def start(target, name=None, args=None, kwargs=None, daemon=False, after=None):
     if after is None:
         _target = target
     else:
+
         def _target(*args, **kwargs):
             time.sleep(after)
             target(*args, **kwargs)
@@ -76,8 +77,7 @@ def daemon(target, name=None, args=None, kwargs=None, after=None):
     It is same as `start()` except that it sets argument `daemon=True`.
     """
 
-    return start(target, name=name, args=args, kwargs=kwargs,
-                 daemon=True, after=after)
+    return start(target, name=name, args=args, kwargs=kwargs, daemon=True, after=after)
 
 
 def send_exception(thread, exctype):
@@ -133,8 +133,7 @@ def _async_raise(tid, exctype):
     # PyThreadState_SetAsyncExc requires GIL to be held
     gil_state = ctypes.pythonapi.PyGILState_Ensure()
     try:
-        res = ctypes.pythonapi.PyThreadState_SetAsyncExc(ctypes.c_long(tid),
-                                                         ctypes.py_object(exctype))
+        res = ctypes.pythonapi.PyThreadState_SetAsyncExc(ctypes.c_long(tid), ctypes.py_object(exctype))
         if res == 0:
             # The thread is likely dead already.
             raise InvalidThreadIdError(tid)

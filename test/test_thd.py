@@ -14,15 +14,14 @@ def _work(sess):
             _ = 1
 
     except SystemExit:
-        sess['raised'] = True
+        sess["raised"] = True
 
 
 class TestThread(unittest.TestCase):
-
     def _verify_exception_raised(self, sess, thread):
         # we wait few seconds for the exception to be raised.
         for _ in range(100):
-            if sess['raised']:
+            if sess["raised"]:
                 # The thread might still be alive at this point.
                 time.sleep(0.2)
                 self.assertFalse(thread.is_alive())
@@ -35,16 +34,16 @@ class TestThread(unittest.TestCase):
 
     def test_send_exception(self):
         # send_exception does not work with PyPy
-        if 'PyPy' in sys.version:
+        if "PyPy" in sys.version:
             return
 
-        sess = {'raised': False}
+        sess = {"raised": False}
 
-        t = k3thread.start(_work, args=(sess, ), daemon=True)
-        self.assertFalse(sess['raised'])
+        t = k3thread.start(_work, args=(sess,), daemon=True)
+        self.assertFalse(sess["raised"])
 
         with self.assertRaises(TypeError):
-            k3thread.send_exception('thread', SystemExit)
+            k3thread.send_exception("thread", SystemExit)
 
         with self.assertRaises(TypeError):
             k3thread.send_exception(t, SystemExit())
@@ -60,13 +59,13 @@ class TestThread(unittest.TestCase):
 
     def test_send_exception_many_times(self):
         # send_exception does not work with PyPy
-        if 'PyPy' in sys.version:
+        if "PyPy" in sys.version:
             return
 
-        sess = {'raised': False}
+        sess = {"raised": False}
 
-        t = k3thread.start(_work, args=(sess, ), daemon=True)
-        self.assertFalse(sess['raised'])
+        t = k3thread.start(_work, args=(sess,), daemon=True)
+        self.assertFalse(sess["raised"])
 
         for _ in range(5):
             try:
@@ -87,19 +86,19 @@ class TestThread(unittest.TestCase):
             a.sort(reverse=reverse)
 
         array = [3, 1, 2]
-        t = k3thread.start(_sort, args=(array, ))
+        t = k3thread.start(_sort, args=(array,))
         t.join()
 
         self.assertEqual(array, [1, 2, 3])
 
-        t = k3thread.start(_sort, args=(array, ),
-                           kwargs={'reverse': True})
+        t = k3thread.start(_sort, args=(array,), kwargs={"reverse": True})
         t.join()
 
         self.assertEqual(array, [3, 2, 1])
 
     def test_daemon(self):
-        def noop(): return None
+        def noop():
+            return None
 
         # Thread should be non-daemon by default
         t = k3thread.start(noop)
@@ -112,7 +111,6 @@ class TestThread(unittest.TestCase):
         self.assertTrue(t.daemon)
 
     def test_thread_after(self):
-
         def _do():
             pass
 
@@ -127,7 +125,6 @@ class TestThread(unittest.TestCase):
             self.assertAlmostEqual(0.5, t.spent(), delta=0.1)
 
     def test_daemon_after(self):
-
         def _do():
             pass
 
