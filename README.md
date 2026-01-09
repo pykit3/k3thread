@@ -1,7 +1,6 @@
 # k3thread
 
 [![Build Status](https://github.com/pykit3/k3thread/actions/workflows/python-package.yml/badge.svg)](https://github.com/pykit3/k3thread/actions/workflows/python-package.yml)
-![Python package](https://github.com/pykit3/k3thread/workflows/Python%20package/badge.svg)
 [![Documentation Status](https://readthedocs.org/projects/k3thread/badge/?version=stable)](https://k3thread.readthedocs.io/en/stable/?badge=stable)
 [![Package](https://img.shields.io/pypi/pyversions/k3thread)](https://pypi.org/project/k3thread)
 
