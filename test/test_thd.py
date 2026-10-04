@@ -2,8 +2,9 @@ import sys
 import time
 import unittest
 
-import k3thread
 import k3ut
+
+import k3thread
 
 dd = k3ut.dd
 
@@ -48,7 +49,7 @@ class TestThread(unittest.TestCase):
         with self.assertRaises(TypeError):
             k3thread.send_exception(t, SystemExit())
 
-        class SomeClass(object):
+        class SomeClass:
             pass
 
         with self.assertRaises(ValueError):

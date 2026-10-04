@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# coding: utf-8
 
 import ctypes
 import inspect
@@ -117,7 +116,7 @@ def send_exception(thread, exctype):
         SendRaiseError: for other unexpected errors.
     """
     if not isinstance(thread, threading.Thread):
-        raise TypeError("Only Thread is allowed, got {t}".format(t=thread))
+        raise TypeError(f"Only Thread is allowed, got {thread}")
 
     _async_raise(thread.ident, exctype)
 
@@ -128,7 +127,8 @@ def _async_raise(tid, exctype):
         raise TypeError("Only types can be raised (not instances)")
 
     if not issubclass(exctype, BaseException):
-        raise ValueError("Only sub classes of BaseException can be raised")
+        # `send_exception()` documents ValueError for this case.
+        raise ValueError("Only sub classes of BaseException can be raised")  # noqa: TRY004
 
     # PyThreadState_SetAsyncExc requires GIL to be held
     gil_state = ctypes.pythonapi.PyGILState_Ensure()

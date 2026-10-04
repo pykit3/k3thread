@@ -23,10 +23,12 @@ import time
 # Start a daemon thread after delay
 th = k3thread.daemon(lambda: print("hello"), after=0.2)
 
+
 # Start a daemon thread with a function
 def worker():
     while True:
         time.sleep(0.1)
+
 
 t = k3thread.daemon(worker)
 

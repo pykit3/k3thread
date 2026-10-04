@@ -22,11 +22,7 @@ from importlib.metadata import version
 
 __version__ = version("k3thread")
 
-from .thd import InvalidThreadIdError
-from .thd import SendRaiseError
-from .thd import daemon
-from .thd import send_exception
-from .thd import start
+from .thd import InvalidThreadIdError, SendRaiseError, daemon, send_exception, start
 
 __all__ = [
     "InvalidThreadIdError",
