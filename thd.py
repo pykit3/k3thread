@@ -26,10 +26,10 @@ def start(target, name=None, args=None, kwargs=None, daemon=False, after=None):
         target(callable):
             The callable object to run.
 
-        name:
+        name(str):
             The thread name. By default, a unique name is constructed of the form "Thread-N" where N is a small decimal number.
 
-        args:
+        args(tuple):
             The argument tuple for the target invocation. Defaults to `()`.
 
         kwargs(dict):
@@ -49,7 +49,7 @@ def start(target, name=None, args=None, kwargs=None, daemon=False, after=None):
             By default it is `None`.
 
     Returns:
-        threading.Thread: the thread started.
+        (threading.Thread): the thread started.
 
     """
     args = args or ()
