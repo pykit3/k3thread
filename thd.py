@@ -42,7 +42,7 @@ def start(target, name=None, args=None, kwargs=None, daemon=False, after=None):
             A non-daemon thread keeps running after main thread quits.
             A process does not quit if there are any non-daemon threads running.
 
-        after(bool):
+        after(float):
             If `after` is not `None`, it sleeps for `after` seconds before calling
             `target`.
 
