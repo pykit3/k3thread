@@ -102,11 +102,10 @@ def send_exception(thread, exctype):
     interrupted and shut down when it is called.
 
     Args:
-
         thread(threading.Thread):
             the thread in which to raise the exception.
 
-        exctype:
+        exctype(type):
             A exception class that will be raised in the thread.
 
     Raises:
