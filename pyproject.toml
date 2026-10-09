@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "k3thread"
-version = "0.1.8"
+version = "0.1.9"
 description = "Thread utilities for daemon threads and exception sending"
 readme = "README.md"
 license = "MIT"
