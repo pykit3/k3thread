@@ -117,6 +117,11 @@ def send_exception(thread, exctype):
     if not isinstance(thread, threading.Thread):
         raise TypeError(f"Only Thread is allowed, got {thread}")
 
+    # An unstarted thread has no ident, and the ident of a finished thread
+    # may already belong to a new thread.
+    if not thread.is_alive():
+        raise InvalidThreadIdError(thread.ident)
+
     _async_raise(thread.ident, exctype)
 
 

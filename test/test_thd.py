@@ -1,4 +1,5 @@
 import sys
+import threading
 import time
 import unittest
 
@@ -81,6 +82,16 @@ class TestThread(unittest.TestCase):
         # Raising in a dead thread shoud not break.
         with self.assertRaises(k3thread.InvalidThreadIdError):
             k3thread.send_exception(t, SystemExit)
+
+    def test_send_exception_not_alive(self):
+        unstarted = threading.Thread(target=lambda: None)
+
+        finished = k3thread.start(lambda: None)
+        finished.join()
+
+        for t in (unstarted, finished):
+            with self.assertRaises(k3thread.InvalidThreadIdError):
+                k3thread.send_exception(t, SystemExit)
 
     def test_start(self):
         def _sort(a, reverse=False):
